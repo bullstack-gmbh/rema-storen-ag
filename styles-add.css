@@ -1,0 +1,307 @@
+/* ---------- Ergänzungen für die mehrseitige Struktur ---------- */
+
+/* .reveal: visueller Anker, ohne versteckte Anfangszustände */
+.reveal { display: block; }
+
+/* Seiten-Hero (kleiner als der Home-Hero) */
+.page-hero {
+  padding: clamp(64px, 8vw, 120px) 0 clamp(48px, 6vw, 88px);
+  background: var(--paper);
+  position: relative;
+  overflow: hidden;
+}
+.page-hero .grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  gap: clamp(32px, 5vw, 80px);
+  align-items: end;
+}
+.page-hero h1 {
+  font-size: clamp(36px, 5.2vw, 72px);
+  letter-spacing: -0.03em;
+  margin-top: 20px;
+  text-wrap: balance;
+}
+.page-hero h1 .accent { color: var(--blue); }
+.page-hero .lead { margin-top: 24px; max-width: 56ch; }
+.page-hero .hero-meta { margin-top: 40px; }
+
+@media (max-width: 900px) {
+  .page-hero .grid { grid-template-columns: 1fr; }
+}
+
+/* Breadcrumbs */
+.crumbs {
+  font-family: "Geist Mono", ui-monospace, monospace;
+  font-size: 12px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--ink-40);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 4px;
+}
+.crumbs a { color: var(--ink-60); transition: color .15s; }
+.crumbs a:hover { color: var(--blue); }
+.crumbs .sep { color: var(--line); }
+.crumbs .current { color: var(--ink); }
+
+/* Visuelle Mini-Storen-Karte für Produktseiten */
+.product-visual {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  background: var(--paper-2);
+}
+.product-visual .placeholder { border-radius: var(--r-lg); }
+
+/* Inhaltsblöcke: zweispaltig Text + Liste */
+.content-2col {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: clamp(40px, 6vw, 96px);
+  align-items: start;
+  margin-top: clamp(48px, 6vw, 72px);
+}
+.content-2col .body p { color: var(--ink-60); font-size: 17px; line-height: 1.6; max-width: 60ch; }
+.content-2col .body p + p { margin-top: 16px; }
+.content-2col .body h3 { margin-top: 32px; margin-bottom: 12px; font-size: 22px; }
+.content-2col .body ul { padding-left: 20px; color: var(--ink-60); margin: 8px 0; line-height: 1.7; }
+.content-2col .body strong { color: var(--ink); font-weight: 600; }
+@media (max-width: 900px) {
+  .content-2col { grid-template-columns: 1fr; }
+}
+
+/* Spec-Liste rechts */
+.spec-list {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  padding: 24px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  position: sticky;
+  top: 100px;
+}
+.spec-list .row { display: flex; flex-direction: column; gap: 4px; padding-bottom: 16px; border-bottom: 1px solid var(--line-2); }
+.spec-list .row:last-child { border-bottom: none; padding-bottom: 0; }
+.spec-list .lbl {
+  font-family: "Geist Mono", ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--ink-40);
+}
+.spec-list .val { font-size: 16px; font-weight: 500; color: var(--ink); }
+.spec-list .val small { display: block; font-size: 13px; color: var(--ink-60); font-weight: 400; margin-top: 4px; }
+
+/* Produkt-Karten Grid (Übersicht Produkte / Leistungen) */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+.product-card {
+  display: block;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s;
+  color: inherit;
+}
+.product-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-2); border-color: transparent; }
+.product-card .img {
+  aspect-ratio: 16 / 9;
+  position: relative;
+  overflow: hidden;
+}
+.product-card .body { padding: 24px 28px 28px; }
+.product-card h3 { font-size: 24px; margin: 0; }
+.product-card p { color: var(--ink-60); font-size: 15px; margin-top: 10px; line-height: 1.55; max-width: 48ch; }
+.product-card .more {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 18px;
+  color: var(--blue);
+  font-weight: 500;
+  font-size: 14px;
+}
+.product-card:hover .more { color: var(--blue-700); }
+.product-card .more svg { transition: transform .2s ease; }
+.product-card:hover .more svg { transform: translateX(3px); }
+@media (max-width: 760px) {
+  .product-grid { grid-template-columns: 1fr; }
+}
+
+/* Faktbox (zwischen Sektionen, mit Zahlen) */
+.factbox {
+  background: var(--paper-2);
+  border-radius: var(--r-lg);
+  padding: clamp(32px, 4vw, 56px);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+  margin: clamp(64px, 8vw, 96px) 0;
+}
+.factbox .fact .num {
+  font-size: clamp(36px, 4vw, 56px);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--blue);
+}
+.factbox .fact .lbl {
+  margin-top: 10px;
+  font-family: "Geist Mono", ui-monospace, monospace;
+  font-size: 12px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--ink-60);
+}
+.factbox .fact p { font-size: 14px; color: var(--ink-60); margin-top: 6px; line-height: 1.5; }
+@media (max-width: 900px) { .factbox { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 520px) { .factbox { grid-template-columns: 1fr; } }
+
+/* FAQ Akkordeon-Look (rein optisch, ohne JS) */
+.faq {
+  border-top: 1px solid var(--line);
+}
+.faq details {
+  border-bottom: 1px solid var(--line);
+  padding: 24px 0;
+}
+.faq summary {
+  cursor: pointer;
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  color: var(--ink);
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after {
+  content: "+";
+  font-family: "Geist Mono", ui-monospace, monospace;
+  font-size: 22px;
+  color: var(--ink-40);
+  font-weight: 400;
+  transition: transform .2s;
+}
+.faq details[open] summary::after { content: "×"; }
+.faq details p { margin-top: 12px; color: var(--ink-60); font-size: 16px; max-width: 70ch; line-height: 1.6; }
+.faq details ul { color: var(--ink-60); padding-left: 20px; margin-top: 8px; line-height: 1.7; }
+
+/* Verwandte Seiten am Ende */
+.related {
+  margin-top: clamp(64px, 8vw, 96px);
+  padding-top: clamp(40px, 5vw, 64px);
+  border-top: 1px solid var(--line);
+}
+.related h3 {
+  font-family: "Geist Mono", ui-monospace, monospace;
+  font-size: 12px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--ink-40);
+  font-weight: 500;
+  margin-bottom: 24px;
+}
+.related-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.related-card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  padding: 20px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: border-color .15s, transform .2s ease;
+  color: inherit;
+}
+.related-card:hover { border-color: var(--ink); transform: translateY(-2px); }
+.related-card .label {
+  font-family: "Geist Mono", ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--ink-40);
+}
+.related-card .ttl { font-size: 17px; font-weight: 600; letter-spacing: -0.01em; }
+.related-card .arr { color: var(--blue); margin-top: 6px; align-self: flex-start; }
+@media (max-width: 760px) { .related-grid { grid-template-columns: 1fr; } }
+
+/* Aktive Navi anzeigen */
+.nav-link.active { color: var(--blue); }
+
+/* Längere Text-Blöcke (Impressum, Datenschutz, Unternehmen-Geschichte) */
+.prose { max-width: 72ch; }
+.prose h2 { margin-top: 56px; margin-bottom: 16px; font-size: clamp(26px, 2.4vw, 34px); }
+.prose h3 { margin-top: 32px; margin-bottom: 10px; font-size: 20px; }
+.prose p { margin: 12px 0; color: var(--ink-60); font-size: 17px; line-height: 1.65; }
+.prose ul { color: var(--ink-60); padding-left: 22px; line-height: 1.7; }
+.prose strong { color: var(--ink); font-weight: 600; }
+.prose a { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
+
+/* History-Timeline auf Unternehmen */
+.timeline {
+  margin-top: clamp(48px, 6vw, 80px);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  position: relative;
+}
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 80px;
+  top: 8px;
+  bottom: 8px;
+  width: 1px;
+  background: rgba(250,250,247,.18);
+}
+.timeline .item {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 32px;
+  align-items: start;
+}
+.timeline .year {
+  font-family: "Geist Mono", ui-monospace, monospace;
+  font-size: 13px;
+  letter-spacing: .12em;
+  color: var(--yellow);
+  padding-top: 4px;
+  position: relative;
+}
+.timeline .year::after {
+  content: "";
+  position: absolute;
+  right: -22px;
+  top: 8px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--yellow);
+  border: 3px solid var(--ink);
+}
+.timeline .body h4 { font-size: 19px; color: var(--paper); margin-bottom: 6px; }
+.timeline .body p { color: rgba(250,250,247,.7); font-size: 15px; max-width: 60ch; line-height: 1.6; }
+@media (max-width: 560px) {
+  .timeline::before { left: 7px; }
+  .timeline .item { grid-template-columns: 1fr; gap: 12px; padding-left: 32px; }
+  .timeline .year::after { right: auto; left: -25px; top: 6px; }
+}

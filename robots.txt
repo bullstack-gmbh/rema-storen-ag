@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /debug/
+Disallow: /src/
+Disallow: /uploads/
+
+Sitemap: https://www.remastoren.ch/sitemap.xml
